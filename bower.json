@@ -1,0 +1,17 @@
+{
+  "name": "dungps.com",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Kevin"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/oryc9x/dungps.com",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
