@@ -3,6 +3,8 @@ var _ = require('lodash');
 var path = require('path');
 var hbs = require('express-hbs');
 
+var post = require('./post');
+
 module.exports = {
 	init: function(app, options) {
 		this.setupStatic(app, options);
@@ -15,7 +17,9 @@ module.exports = {
 
 		app.set('view engine', 'hbs');
 		app.set('views', options.viewPath);
+		
 		app.get('/',this.home);
+		app.get('/page/:paged',this.paged);
 		app.get('*',this.check);
 	},
 
@@ -37,7 +41,30 @@ module.exports = {
 
 	home: function(req,res,next) {
 		res.render(
-			'index'
+			'index',
+			{
+				posts: post.getPostsData()
+			}
 		);
+	},
+
+	paged: function(req,res,next) {
+		res.render(
+			'index',
+			{
+				posts: post.getPostsData({paged: req.params.paged})
+			}
+		);
+	},
+
+	post: function(req,res,next) {
+		var params = [
+			req.params.year,
+			req.params.month,
+			req.params.date,
+			req.params.post,
+		];
+
+		var filePath = 
 	}
 }

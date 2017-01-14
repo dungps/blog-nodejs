@@ -13,11 +13,16 @@ function setupConfig(config) {
 }
 
 setupConfig.prototype.setup = function(config) {
+	config = config || {};
+	
 	_.merge(this.config,config);
 
 	this.config.appPath = config.appPath || path.resolve( __dirname, '../' );
 	this.config.viewPath = config.viewPath || path.resolve( this.config.appPath, 'views/' );
 	this.config.assetsPath = config.assetsPath || path.resolve( this.config.appPath, 'assets/' );
+	this.config.contentPath = config.contentPath || path.resolve( this.config.appPath, 'content/' );
+	this.config.postsPath = config.postsPath || path.resolve( this.config.contentPath, 'posts/');
+	this.config.posts_per_page = config.posts_per_page || 10;
 
 	if ( this.config.production ) {
 		delete this.config.production;

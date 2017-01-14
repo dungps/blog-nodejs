@@ -4,13 +4,15 @@ module.exports = {
 	production: {
 		host: '0.0.0.0',
 		port: process.env.PORT,
-		url: 'http://dungps.com'
+		url: 'http://dungps.com',
 	},
 
 	// this config for development
 	development: {
 		host: 'localhost',
-		port: '80',
+		port: '81',
 		url: 'http://localhost.com'
-	}
+	},
+
+	posts_per_page: 10
 }
