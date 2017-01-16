@@ -1,0 +1,13 @@
+{{#each posts}}
+	<article class="post">
+		<a href="#">
+			<h1 class="post__title">{{title}}</h1>
+		</a>
+		<div class="post__content">{{content characters="150"}}</div>
+		<div class="post__meta">
+			Posted by <span class="post__meta_author">{{author}}</span> on <time class="post__meta_time">{{date}}</time>
+		</div>
+	</article>
+{{/each}}
+
+{{pagination}}

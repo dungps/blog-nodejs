@@ -6,6 +6,7 @@ module.exports = {
 	locate: function(path) {
 		return path.resolve(config.appPath, path);
 	},
+	
 	home: function(path) {
 		return url.resolve(config.url, path);
 	}

@@ -41,6 +41,11 @@ setupConfig.prototype.setup = function(config) {
 
 setupConfig.prototype.load = function(config) {
 	var self = this;
+
+	if ( _.isEmpty(config) ) {
+		config = Config[env];
+	}
+
 	return self.setup(config);
 }
 

@@ -71,6 +71,11 @@ module.exports = {
 		return posts;
 	},
 
+	totalPost: function() {
+		var files = fs.readdirSync(config.postsPath);
+		return files.length;
+	},
+
 	regexContent: function(content,type) {
 		content = content || '';
 		type = type || 'content';

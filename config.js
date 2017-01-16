@@ -11,18 +11,24 @@ module.exports = {
 	development: {
 		host: 'localhost',
 		port: '81',
-		url: 'http://localhost'
+		url: 'http://localhost:81'
 	},
 
-	posts_per_page: 10,
+	posts_per_page: 1,
 	navigations: [
 		{
 			slug: '/',
-			title: 'Home'
+			label: 'Home'
 		},
 		{
 			slug: 'profile',
-			title: 'Profile'
+			label: 'Profile'
 		}
-	]
+	],
+
+	site: {
+		title: 'Kevin Pham',
+		description: 'PHP Developer',
+		format: '%TITLE% - %SUBTITLE%'
+	}
 }
