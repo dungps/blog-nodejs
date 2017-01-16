@@ -6,18 +6,13 @@
 			<img src="//placehold.it/64x64" class="header__brand_image">
 		</div>
 		<div class="header__menu">
-			<ul class="header__menu_nav">
-				<li class="header__menu_item active">
-					<a href="#">Home</a>
-				</li>
-				<li class="header__menu_item">
-					<a href="/profile">Profile</a>
-				</li>
-			</ul>
+			{{nav}}
 		</div>
 	</div>
 </header>
 
-{{{body}}}
+<main role="main">
+	{{{body}}}
+</main>
 
 {{> "footer"}}

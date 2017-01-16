@@ -14,5 +14,15 @@ module.exports = {
 		url: 'http://localhost.com'
 	},
 
-	posts_per_page: 10
+	posts_per_page: 10,
+	navigations: [
+		{
+			slug: 'home',
+			title: 'Home'
+		},
+		{
+			slug: 'profile',
+			title: 'Profile'
+		}
+	]
 }

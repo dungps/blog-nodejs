@@ -9,6 +9,26 @@ body {
 	font-weight: @font-weight-base;
 	font-style: @font-style-base;
 	color: @text-color-base;
+	margin: 0;
+}
+
+a {
+
+	&,
+	&:visited{
+		color: @link-color;
+		text-decoration: none;
+	}
+
+	&:active,
+	&:focus,
+	&:hover {
+		color: @link-color-hover;
+	}
+}
+
+main {
+	margin-top: 65px;
 }
 
 .container {

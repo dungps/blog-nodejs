@@ -56,12 +56,16 @@ module.exports = function(grunt) {
 		},
 
 		copy: {
-			assets: {
-				expand: true,
-				cwd: 'assets/vendor/font-awesome/fonts/',
-				src: ['**'],
-				dest: 'assets/fonts/',
-				filter: 'isFile'
+			main: {
+				files: [
+					{
+						expand: true,
+						cwd: 'assets/vendor/font-awesome/fonts/',
+						src: ['**'],
+						dest: 'assets/fonts/',
+						filter: 'isFile'
+					}
+				]
 			}
 		}
 	});
@@ -72,7 +76,7 @@ module.exports = function(grunt) {
 	]);
 
 	grunt.registerTask('build', [
-		'copy:assets',
+		'copy:main',
 		'less',
 		'concat'
 	]);

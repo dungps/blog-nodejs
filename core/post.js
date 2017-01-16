@@ -4,8 +4,6 @@ var path = require('path');
 var config = require('./config');
 var helper = require('./helper');
 
-var options = config.load();
-
 module.exports = {
 	getPostData: function(file) {
 		if (!fs.existsSync(file)) {
