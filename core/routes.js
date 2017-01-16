@@ -2,7 +2,6 @@ var express = require('express');
 var _ = require('lodash');
 var path = require('path');
 var hbs = require('express-hbs');
-
 var post = require('./post');
 
 module.exports = {
@@ -53,7 +52,8 @@ module.exports = {
 				paged: 1,
 				is_single: false,
 				is_home: true,
-				is_profile: false
+				is_profile: false,
+				slug: req.route.path
 			}
 		);
 	},
@@ -66,7 +66,8 @@ module.exports = {
 				paged: req.params.paged,
 				is_single: false,
 				is_home: true,
-				is_profile: false
+				is_profile: false,
+				slug: req.route.path
 			}
 		);
 	},
@@ -89,7 +90,8 @@ module.exports = {
 					paged: 1,
 					is_single: true,
 					is_home: false,
-					is_profile: false
+					is_profile: false,
+					slug: req.route.path
 				}
 			);
 		} else {

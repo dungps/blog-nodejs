@@ -1,7 +1,7 @@
 var _ = require('lodash');
 var fs = require('fs');
 var path = require('path');
-var config = require('./config');
+var config = require('./config').config;
 var helper = require('./helper');
 
 module.exports = {
@@ -29,7 +29,7 @@ module.exports = {
 
 		var defaults = {
 			paged: 1,
-			limit: options.posts_per_page,
+			limit: config.posts_per_page,
 			nopaging: false
 		}
 
@@ -48,7 +48,7 @@ module.exports = {
 		}
 
 		var posts = [];
-		var files = fs.readdirSync(options.postsPath);
+		var files = fs.readdirSync(config.postsPath);
 		files.sort(sortDate)
 		var offset, limit;
 
@@ -62,7 +62,7 @@ module.exports = {
 
 		for(var i = offset; i < limit; i++) {
 			if ( files[i] && '.md' === path.extname(files[i])) {
-				var pathToFile = path.resolve(options.postsPath, files[i] );
+				var pathToFile = path.resolve(config.postsPath, files[i] );
 				var post = this.getPostData(pathToFile);
 				posts.push(post);
 			}

@@ -11,13 +11,13 @@ module.exports = {
 	development: {
 		host: 'localhost',
 		port: '81',
-		url: 'http://localhost.com'
+		url: 'http://localhost'
 	},
 
 	posts_per_page: 10,
 	navigations: [
 		{
-			slug: 'home',
+			slug: '/',
 			title: 'Home'
 		},
 		{

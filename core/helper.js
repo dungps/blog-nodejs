@@ -1,5 +1,5 @@
 var path = require('path');
-var config = require('./config');
+var config = require('./config').config;
 var url = require('url');
 
 module.exports = {

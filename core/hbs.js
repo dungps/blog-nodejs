@@ -1,28 +1,28 @@
 var _ = require('lodash');
 var hbs = require('express-hbs');
-var config = require('./config');
+var config = require('./config').config;
 var helper = require('./helper');
+
+function template(name, context, options) {
+	var partial = hbs.handlebars.partials[name];
+
+	if (partial === undefined) {
+		return 'Missing ' + name + ' template';
+	}
+
+	if (partial === 'string') {
+		return hbs.registerPartial(partial);
+	}
+
+	return new hbs.handlebars.SafeString(partial(context, options));
+}
 
 module.exports = {
 	init: function() {
 		hbs.registerHelper('content', this.content);
 		hbs.registerHelper('pagination', this.pagination);
 		hbs.registerHelper('title', this.title);
-		hbs.registerHelper('nav', this.navPartial);
-	},
-
-	template: function(name, context, options) {
-		var partial = hbs.handlebars.partials[name];
-
-		if (partial === undefined) {
-			return 'Missing ' + name + ' template';
-		}
-
-		if (partial === 'string' ) {
-			return hbs.registerPartial(partial);
-		}
-
-		return new hbs.handlebars.SafeString(partial(context, options));
+		hbs.registerHelper('nav', this.nav);
 	},
 
 	content: function(options) {
@@ -45,26 +45,32 @@ module.exports = {
 		return new hbs.handlebars.SafeString(this.title);
 	},
 
+	url: function(options) {
+		console.log(this);
+		url = encodeURI(decodeURI(this));
+
+		return new hbs.SafeString(url);
+	},
+
 	loopPartial: function() {
 
 	},
 
-	navPartial: function(options) {
+	nav: function(options) {
 		var nav = config.navigations;
-		console.log(nav);
-		var currentUrl = options.data.root.slug;
+		var currentSlug = options.data.root.slug;
 
 		if (!_.isObject(nav) || _.isFunction(nav)) {
 			return;
 		}
 
-		var _isCurrentUrl = function(href, currentUrl) {
-			if (!currentUrl) {
+		var _isCurrentUrl = function(slug, currentSlug) {
+			if (!currentSlug) {
 				return false;
 			}
 
-			var strippedHref = href.replace(/\/+$/, '');
-			var strippedCurrentUrl = currentUrl.replace(/\/+$/, '');
+			var strippedHref = slug.replace(/\/+$/, '');
+			var strippedCurrentUrl = currentSlug.replace(/\/+$/, '');
 
 			return strippedHref === strippedCurrentUrl;
 		}
@@ -76,6 +82,8 @@ module.exports = {
 		output = nav.map(function(e){
 			var out = {};
 
+			e.slug = e.slug || '/';
+
 			out.current = _isCurrentUrl(e.slug, currentSlug);
 			out.label = e.label;
 			out.slug = e.slug;
@@ -85,6 +93,6 @@ module.exports = {
 
 		data = _.merge({}, {nav: output});
 
-		return this.template('nav', data, options);
+		return template('nav', data, options);
 	}
 }
