@@ -23,7 +23,7 @@ module.exports = {
 		hbs.registerHelper('content', this.content);
 		hbs.registerHelper('pagination', this.pagination);
 		hbs.registerHelper('title', this.title);
-		hbs.registerHelper('nav', this.nav);
+		hbs.registerHelper('navigation', this.navigation);
 		hbs.registerHelper('meta_title', this.meta_title);
 		hbs.registerHelper('meta_description', this.meta_description);
 		hbs.registerHelper('header', this.header);
@@ -54,17 +54,29 @@ module.exports = {
 	meta_title: function(options) {
 		var data = options.data.root;
 		var title = config.site.title;
+		config.site.subtitle = config.site.subtitle || '';
 
-		if (data.is_single) {
+		if ( ( data.is_home || data.is_profile ) && config.site.subtitle ) {
 			title = config.site.format.replace('%TITLE%', title);
-			title = config.site.format.replace('%SUBTITLE%', data.post.title);
+			title = title.replace('%SUBTITLE%', config.site.subtitle)
+		}
+
+		if ( data.is_single ) {
+			title = config.site.format.replace('%TITLE%', title);
+			title = title.replace('%SUBTITLE%', data.post.title);
 		}
 
 		return new hbs.SafeString(title);
 	},
 
 	meta_description: function(options) {
+		var meta_description = config.site.description;
 
+		if ( _.isEmpty( meta_description ) ) {
+			return new hbs.SafeString('');
+		}
+
+		return new hbs.SafeString( meta_description );
 	},
 
 	header: function(options) {
@@ -73,13 +85,13 @@ module.exports = {
 
 	logo: function(options) {
 		if (!_.isEmpty(config.site.logo)) {
-			return new hbs.SafeString('<a href="'+config.url+'" class="'+options.hash.class+'"><img src="'+ config.site.logo +'"></a>');
+			return new hbs.SafeString('<a href="'+config.url+'" class="'+options.hash.class+'"><img src="'+ config.site.logo +'" title="'+config.site.title+'"></a>');
 		}
 
 		return new hbs.SafeString('<a href="'+config.url+'" class="'+options.hash.class+'">' +config.site.title+'</a>');
 	},
 
-	nav: function(options) {
+	navigation: function(options) {
 		var nav = config.navigations;
 		var currentSlug = options.data.root.slug;
 
@@ -114,9 +126,9 @@ module.exports = {
 			return out;
 		});
 
-		var data = _.merge({}, {nav: output});
+		var data = _.merge({}, {navigation: output});
 
-		return template('nav', data, options);
+		return template('navigation', data, options);
 	},
 
 	pagination: function(options) {

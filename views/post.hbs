@@ -1,4 +1,7 @@
-{{#each posts}}
+{{!< default}}
+
+<div class="container">
+	{{#post}}
 	<article class="post post-item">
 		{{#if thumbnail}}
 			<div class="entry-thumbnail"><a href="{{url}}" rel="bookmark"><img src="{{thumbnail}}" title="{{title}}"></a></div>
@@ -8,13 +11,12 @@
 				<a href="{{url}}">{{title}}</a>
 			</h2>
 		</header>
-		<div class="entry-content">
-			{{content characters="150"}}
-		</div>
 		<div class="entry-meta">
 			Posted by <span class="entry-author">{{author}}</span> on <time class="entry-date published updated" datatime="{{date}}">{{date}}</time>
 		</div>
+		<div class="entry-content">
+			{{content}}
+		</div>
 	</article>
-{{/each}}
-
-{{pagination}}
+	{{/post}}
+</div>

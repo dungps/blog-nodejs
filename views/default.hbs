@@ -1,18 +1,26 @@
 {{> "header"}}
 
-<header class="header">
-	<div class="header__container container">
-		<div class="header__brand">
-			{{logo class="header__brand_item"}}
+<div id="page" class="hfeed site">
+	<header id="masthead" class="navbar navbar-default navbar-static-top site-header" role="banner">
+		<div class="container">
+			<div class="navbar-header">
+				{{logo class="navbar-brand"}}
+				<button class="navbar-toggle" data-toggle="collapse" data-target=".main-navigation">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<nav id="site-navigation" class="collapse navbar-collapse main-navigation navbar-right" role="navigation">
+				{{navigation}}
+			</nav>
 		</div>
-		<div class="header__menu">
-			{{nav}}
-		</div>
-	</div>
-</header>
+	</header>
+</div>
 
-<main role="main">
+<div id="content" class="site-content">
 	{{{body}}}
-</main>
+</div>
 
 {{> "footer"}}

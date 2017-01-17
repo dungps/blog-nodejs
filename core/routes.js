@@ -1,8 +1,10 @@
 var express = require('express');
 var _ = require('lodash');
 var path = require('path');
+var fs = require('fs');
 var hbs = require('express-hbs');
 var post = require('./post');
+var helper = require('./helper');
 
 module.exports = {
 	init: function(app, options) {
@@ -67,7 +69,7 @@ module.exports = {
 				is_single: false,
 				is_home: true,
 				is_profile: false,
-				slug: req.route.path
+				slug: '/'
 			}
 		);
 	},
@@ -80,7 +82,7 @@ module.exports = {
 			req.params.post,
 		];
 
-		var filePath = helper.locate('content/post/' + params.join('-') + '.md');
+		var filePath = helper.locate('content/posts/' + params.join('-') + '.md');
 
 		if ( fs.existsSync(filePath) ) {
 			res.render(

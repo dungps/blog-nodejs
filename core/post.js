@@ -10,17 +10,20 @@ module.exports = {
 			return;
 		}
 
+		var fileName = path.basename(file,'.md');
 		var fileContent = fs.readFileSync(file,'utf8');
 		fileContent = fileContent.replace("\r","\n");
 
 		return {
+			url: this.parseUrl(fileName),
 			title: this.regexContent(fileContent, 'title'),
 			author: this.regexContent(fileContent, 'author'),
 			date: this.regexContent(fileContent, 'date'),
 			description: this.regexContent(fileContent, 'description'),
 			shortDesctiption: this.regexContent(fileContent, 'shortDesctiption'),
 			keywords: this.regexContent(fileContent, 'keywords'),
-			content: this.regexContent(fileContent, 'content')
+			content: this.regexContent(fileContent, 'content'),
+			thumbnail: this.regexContent(fileContent, 'thumbnail')
 		}
 	},
 
@@ -94,5 +97,24 @@ module.exports = {
 			// get main content
 			return content.replace(/\/\*\*[^>]+\*\//, '');
 		}
+	},
+
+	parseUrl: function(fileName) {
+		var filePath = slicePath = _.split(fileName,'-');
+		var y = filePath[0];
+		var m = filePath[1];
+		var d = filePath[2];
+
+		delete slicePath[0];
+		delete slicePath[1];
+		delete slicePath[2];
+
+		slicePath = _.remove(slicePath,undefined);
+
+		slicePath = _.join(slicePath, '-');
+
+		var urlPath = _.join([y,m,d,slicePath], '/');
+
+		return helper.home(urlPath);
 	}
 }

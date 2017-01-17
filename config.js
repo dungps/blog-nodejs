@@ -14,7 +14,7 @@ module.exports = {
 		url: 'http://localhost:81'
 	},
 
-	posts_per_page: 1,
+	posts_per_page: 10,
 	navigations: [
 		{
 			slug: '/',
@@ -27,8 +27,9 @@ module.exports = {
 	],
 
 	site: {
-		title: 'Kevin Pham',
+		title: 'Kevin',
+		subtitle: 'Full Stack Developer',
 		description: 'PHP Developer',
-		format: '%TITLE% - %SUBTITLE%'
+		format: '%TITLE% &#8212; %SUBTITLE%'
 	}
 }

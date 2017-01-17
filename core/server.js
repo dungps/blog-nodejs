@@ -15,4 +15,6 @@ module.exports = function(config) {
 	cache.init();
 
 	http.createServer(app).listen(options.port, options.host);
+
+	console.log('Server is running in %s:%s', options.host, options.port)
 }

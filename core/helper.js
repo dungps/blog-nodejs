@@ -3,11 +3,11 @@ var config = require('./config').config;
 var url = require('url');
 
 module.exports = {
-	locate: function(path) {
-		return path.resolve(config.appPath, path);
+	locate: function(filePath) {
+		return path.resolve(config.appPath, filePath);
 	},
 	
-	home: function(path) {
-		return url.resolve(config.url, path);
+	home: function(urlPath) {
+		return url.resolve(config.url, urlPath);
 	}
 }

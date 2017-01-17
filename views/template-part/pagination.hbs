@@ -1,12 +1,12 @@
-<div class="pagination">
-	<h2 class="pagination__text"></h2>
-	<div class="pagination__nav">
+<div class="pagination navigation">
+	<h2 class="screen-reader-text">Post navigation</h2>
+	<div class="nav-links">
 		{{#if prev}}
-			<a href="{{prevURL}}" class="pagination__nav_prev"><i class="fa fa-angle-left"></i></a>
+			<a href="{{prevURL}}" class="prev page-numbers"><i class="fa fa-angle-left"></i></a>
 		{{/if}}
 		<span class="page-numbers current">Page {{page}} of {{pages}}</span>
 		{{#if next}}
-			<a href="{{nextURL}}" class="pagination__nav_next"><i class="fa fa-angle-right"></i></a>
+			<a href="{{nextURL}}" class="next page-numbers"><i class="fa fa-angle-right"></i></a>
 		{{/if}}
 	</div>
 </div>
